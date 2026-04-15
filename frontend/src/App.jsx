@@ -3,6 +3,10 @@ import TopicSelector from './components/TopicSelector'
 import VoiceRecorder from './components/VoiceRecorder'
 import FeedbackPanel from './components/FeedbackPanel'
 
+// In dev, Vite proxies /api/* to localhost:8787 (see vite.config.js).
+// In production, VITE_API_URL is set to the deployed Worker URL.
+const API = import.meta.env.VITE_API_URL ?? ''
+
 // Phases: 'topic' → 'question' → 'recording' → 'evaluating' → 'feedback'
 
 export default function App() {
@@ -21,7 +25,7 @@ export default function App() {
     setPhase('question') // show loading state
 
     try {
-      const res = await fetch('/api/session/start', {
+      const res = await fetch(`${API}/api/session/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic: selectedTopic }),
@@ -49,7 +53,7 @@ export default function App() {
       formData.append('audio', audioBlob, 'answer.webm')
       formData.append('sessionId', sessionId)
 
-      const res = await fetch('/api/session/evaluate', {
+      const res = await fetch(`${API}/api/session/evaluate`, {
         method: 'POST',
         body: formData,
       })
@@ -71,7 +75,7 @@ export default function App() {
     setPhase('question')
 
     try {
-      const res = await fetch('/api/session/next', {
+      const res = await fetch(`${API}/api/session/next`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionId }),

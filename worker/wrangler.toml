@@ -14,7 +14,7 @@ class_name = "InterviewSession"
 
 [[migrations]]
 tag = "v1"
-new_classes = ["InterviewSession"]
+new_sqlite_classes = ["InterviewSession"]
 
 # Workflows
 [[workflows]]
