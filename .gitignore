@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+worker/node_modules/
+
+# Build output
+frontend/dist/
+frontend/.vite/
+
+# Wrangler
+worker/.wrangler/
+.wrangler/
+
+# Environment & secrets
+.env
+.env.local
+.dev.vars
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE & local tooling
+.vscode/
+.idea/
+.claude/
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,0 +1,23 @@
+name = "cf-ai-interview-prep-worker"
+main = "index.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers AI binding
+[ai]
+binding = "AI"
+
+# Durable Objects
+[[durable_objects.bindings]]
+name = "SESSION"
+class_name = "InterviewSession"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["InterviewSession"]
+
+# Workflows
+[[workflows]]
+name = "interview-pipeline"
+binding = "INTERVIEW_PIPELINE"
+class_name = "InterviewPipeline"
